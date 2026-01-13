@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Production
+dist/
+build/
+
+# Local env
+.env
+.DS_Store
+
+# Misc
+db.sqlite3
