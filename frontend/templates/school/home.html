@@ -1,0 +1,31 @@
+{% extends 'school/base.html' %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Sistema de Gestão Académica (IMPL)</h1>
+        <p class="col-md-8 fs-4">Bem-vindo ao sistema de gestão do curso de Informática.</p>
+        <hr class="my-4">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-header">Alunos</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ total_students }} Alunos Registados</h5>
+                        <a href="{% url 'student_list' %}" class="btn btn-light">Gerir Alunos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-header">Disciplinas</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ total_disciplines }} Disciplinas</h5>
+                        <a href="{% url 'discipline_list' %}" class="btn btn-light">Gerir Disciplinas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

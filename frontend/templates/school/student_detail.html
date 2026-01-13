@@ -1,0 +1,49 @@
+{% extends 'school/base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">{{ student.name }}</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <span class="badge bg-secondary fs-6">{{ student.enrollment_number }}</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>Histórico de Avaliações</h3>
+        {% if evaluations %}
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Disciplina</th>
+                        <th>Tipo</th>
+                        <th>Nota</th>
+                        <th>Ano Letivo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ev in evaluations %}
+                    <tr>
+                        <td>{{ ev.date|date:"d/m/Y" }}</td>
+                        <td>{{ ev.discipline.name }}</td>
+                        <td>{{ ev.get_evaluation_type_display }}</td>
+                        <td>{{ ev.value }}</td>
+                        <td>{{ ev.academic_year.year }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p class="text-muted">Nenhuma avaliação registada.</p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="mt-4">
+    <a href="{% url 'student_list' %}" class="btn btn-secondary">Voltar</a>
+    <a href="{% url 'evaluation_create' %}?student={{ student.id }}" class="btn btn-primary">Lançar Nova Nota</a>
+</div>
+{% endblock %}

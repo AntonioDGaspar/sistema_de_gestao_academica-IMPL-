@@ -1,0 +1,60 @@
+{% extends 'school/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="mb-4">Lançar Nota / Avaliação</h2>
+        <form method="post" class="card p-4">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="student" class="form-label">Aluno</label>
+                <select class="form-select" id="student" name="student" required>
+                    <option value="">Selecione um aluno...</option>
+                    {% for s in students %}
+                    <option value="{{ s.id }}" {% if request.GET.student==s.id|stringformat:"i" %}selected{% endif %}>{{
+                        s.name }} ({{ s.enrollment_number }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="discipline" class="form-label">Disciplina</label>
+                <select class="form-select" id="discipline" name="discipline" required>
+                    <option value="">Selecione uma disciplina...</option>
+                    {% for d in disciplines %}
+                    <option value="{{ d.id }}">{{ d.name }} ({{ d.get_year_level_display }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="year" class="form-label">Ano Letivo</label>
+                <select class="form-select" id="year" name="year" required>
+                    {% for y in years %}
+                    <option value="{{ y.id }}">{{ y.year }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="type" class="form-label">Tipo de Avaliação</label>
+                    <select class="form-select" id="type" name="type" required>
+                        <option value="TEST">Teste</option>
+                        <option value="EXAM">Exame</option>
+                        <option value="WORK">Trabalho</option>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="value" class="form-label">Nota (0 - 20)</label>
+                    <input type="number" step="0.1" min="0" max="20" class="form-control" id="value" name="value"
+                        required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Lançar Nota</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

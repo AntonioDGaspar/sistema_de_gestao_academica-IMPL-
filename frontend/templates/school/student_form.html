@@ -1,0 +1,23 @@
+{% extends 'school/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="mb-4">Registar Novo Aluno</h2>
+        <form method="post" class="card p-4">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="name" class="form-label">Nome Completo</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="enrollment" class="form-label">Número de Matrícula</label>
+                <input type="text" class="form-control" id="enrollment" name="enrollment" required>
+            </div>
+            <!-- Add more fields as needed -->
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a href="{% url 'student_list' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

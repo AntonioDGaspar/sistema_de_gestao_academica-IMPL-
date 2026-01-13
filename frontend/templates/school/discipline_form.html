@@ -1,0 +1,31 @@
+{% extends 'school/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="mb-4">Registar Disciplina</h2>
+        <form method="post" class="card p-4">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="name" class="form-label">Nome da Disciplina</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="year" class="form-label">Ano Curricular</label>
+                <select class="form-select" id="year" name="year" required>
+                    <option value="1">1º Ano</option>
+                    <option value="2">2º Ano</option>
+                    <option value="3">3º Ano</option>
+                    <option value="4">4º Ano</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="workload" class="form-label">Carga Horária</label>
+                <input type="number" class="form-control" id="workload" name="workload" required>
+            </div>
+            <button type="submit" class="btn btn-success">Salvar</button>
+            <a href="{% url 'discipline_list' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
